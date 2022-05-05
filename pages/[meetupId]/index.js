@@ -14,11 +14,11 @@ const MeetupDetails = (props) => {
                 />
             </Head>
             <MeetupDetail 
-            image= {props.meetupData.image}
-            title= {props.meetupData.title}
-            address= {props.meetupData.address}
-            description= {props.meetupData.description}
-        />
+                image= {props.meetupData.image}
+                title= {props.meetupData.title}
+                address= {props.meetupData.address}
+                description= {props.meetupData.description}
+            />
         </Fragment>
     )
 }
@@ -30,7 +30,7 @@ export async function getStaticPaths(){
     const meetups = await meetupsCollection.find({}, {_id: 1}).toArray()
     client.close()
     return {
-        fallback: false,
+        fallback: 'blocking',
         paths: meetups.map(meetup => ({
             params: { meetupId: meetup._id.toString()}
         })),
